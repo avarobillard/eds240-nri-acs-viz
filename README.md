@@ -6,10 +6,15 @@ This repository contains a visualization of how [FEMA (Federal Emergency Managem
 
 ## Repository Structure
 
+```
 eds240-nri-acs-viz
 ├── data
 │ └── National_Risk_Index_Counties_807384124455672111.csv
 ├── eds240-nri-acs-viz.Rproj
 ├── HW2.qmd
 └── README.md
+```
 
+## References
+
+This assignment was created as a part of EDS 240: Data Visualization & Communication, taught by Sam Shanny-Csik.
