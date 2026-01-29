@@ -18,3 +18,6 @@ eds240-nri-acs-viz
 ## References
 
 This assignment was created as a part of EDS 240: Data Visualization & Communication, taught by Sam Shanny-Csik.
+
+Data: 
+Federal Emergency Management Agency. (2025). National Risk Index. Retrieved January 29, 2025, from https://www.fema.gov/flood-maps/products-tools/national-risk-index
