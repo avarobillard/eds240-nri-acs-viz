@@ -115,15 +115,14 @@ ggplot(state_labels, aes(x = state_name, y = county_count, fill = risk_category)
 ```
 
 ### Final boxplot
-```{r}
+```{r fig.height=10, fig.width=6}
 #| warning: FALSE
 #| message: FALSE
 #| fig-alt: "Boxplots of the National Risk Index Score of each state in the United States increasing by median score, with California at the top of the plot experiencing the highest NRI scores of about 89."
 
 # Boxplot of NRI by state
 ggplot(nri, aes(x = national_risk_index_score_composite,
-                y = reorder(state_name, national_risk_index_score_composite,
-                            FUN = "median"),
+                y = fct_reorder(state_name, national_risk_index_score_composite),
                 fill = state_name)) +
   geom_boxplot() +
   # Emphasize California
@@ -137,11 +136,11 @@ ggplot(nri, aes(x = national_risk_index_score_composite,
   # Edit theme
   theme_classic() +
   theme(
-    axis.text = element_text(size = 5),
-    axis.title = element_text(size = 9),
+    axis.text = element_text(size = 8),
+    axis.title = element_text(size = 10),
     legend.position = "none",
     plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(size = 10),
+    plot.subtitle = element_text(size = 11),
     plot.caption = element_text(size = 7)
     )
 ```
