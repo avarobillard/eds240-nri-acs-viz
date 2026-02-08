@@ -2,7 +2,7 @@
 title: "HW #2"
 subtitle: "Visualizing FEMA NRI Data"
 author: "Ava Robillard"
-date: 1/28/26
+date: 2/4/26
 format: pdf
 ---
 
@@ -136,11 +136,11 @@ ggplot(nri, aes(x = national_risk_index_score_composite,
   # Edit theme
   theme_classic() +
   theme(
-    axis.text = element_text(size = 8),
-    axis.title = element_text(size = 10),
+    axis.text = element_text(size = 9),
+    axis.title = element_text(size = 11),
     legend.position = "none",
     plot.title = element_text(face = "bold", size = 14),
-    plot.subtitle = element_text(size = 11),
+    plot.subtitle = element_text(size = 12),
     plot.caption = element_text(size = 7)
     )
 ```
@@ -152,7 +152,7 @@ California was the state with the highest median National Risk Index Score at ab
  
 #### 4. What modifications did you make to this visualization to make it more easily readable?
 
-I reordered the states based on their national risk scores in order to better show California in comparison to other states. I also used gghighlight with a selected color to emphasize California's boxplot as there were 50 states shown. I also customized my theme to create a visual hierarchy of text, where the title is largest and the axes labels are the smallest. 
+I reordered the states based on their national risk scores in order to better show California in comparison to other states. I also used gghighlight with a selected color to emphasize California's boxplot as there were 50 states shown. I also customized my theme to create a visual hierarchy of text, where the title is largest and the axes labels are the smallest. Lastly, I increased the figure height to 10 to make the y-axis legible.
 
 #### 5. Is there anything you wanted to implement, but didn’t know how? If so, please describe.
 
