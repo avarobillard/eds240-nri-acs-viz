@@ -67,7 +67,16 @@ clean_data <- full_data %>%
   # Rename label column values for plotting
   mutate(label = replace(label, label == 'Estimate!!Total', 'Estimate!!Total:!!Total')) %>% 
   mutate(label = str_remove(label, ":$")) %>% 
-  mutate(label = str_sub(label, start = 19, end = -1)) 
+  mutate(label = str_sub(label, start = 19, end = -1)) %>% 
+  mutate(label = case_when(
+    label == "White alone" ~ "White",
+    label == "Black or African American alone" ~ "Black or African American",
+    label == "American Indian and Alaska Native alone" ~ "American Indian and Alaska Native",
+    label == "Asian alone" ~ "Asian",
+    label == "Native Hawaiian and Other Pacific Islander alone" ~ "Native Hawaiian and Other Pacific Islander",
+    label == "Some Other Race alone" ~ "Some Other Race",
+    TRUE ~ label
+  ))
 ```
 
 ```{r}
@@ -110,7 +119,7 @@ full_popdata <- full_popdata %>%
 ### Build visualization
 
 ```{r fig.width=8, fig.height=6}
-#| fig-alt: "Horizontal stacked bar chart of each racial and ethnic group in California showing the proportion of the population in each National Risk Index Rating, including Very High, Relatively High, Relatively Moderate, Relatively Low, and Very Low. Climate hazard risk is High for between 75 and 100% of all groups, while the Black or African American alone group showed the highest proportion of populations within high risk counties and the White alone group showed the lowest."
+#| fig-alt: "Horizontal stacked bar chart of each racial and ethnic group in California showing the proportion of the population in each National Risk Index Rating, including Very High, Relatively High, Relatively Moderate, Relatively Low, and Very Low. Climate hazard risk is High for between 75 and 100% of all groups, while the Black or African American group showed the highest proportion of populations within high risk counties and the White group showed the lowest."
 
 # Customize colors from NRI map
 rating_colors <- c("Very High" = "#D06274", 
@@ -130,7 +139,7 @@ ggplot(full_popdata, aes(x = label, y = perc_pop,
   # Expand plot and add percents to axis
   scale_y_continuous(expand = c(0,0), labels = scales::label_percent(scale = 1)) +
   labs(title = "Climate Hazard Risk Across California Racial and Ethnic Groups",
-       subtitle = "High climate hazard risk is experienced across all California racial and ethnic groups. \nThe 'Black or African American alone' group has the highest population percentage within\ncounties labeled as high risk, while the 'White alone' group has the lowest percentage.",
+       subtitle = "High climate hazard risk is experienced across all California racial and ethnic groups. \nThe 'Black or African American' group has the highest population percentage within\ncounties labeled as high risk, while the 'White' group has the lowest percentage.",
        caption = "Data sources: FEMA National Risk Index (2025 Release) and US Census Bureau American Community Survey (2023)",
        y = "Percent of Population",
        fill = "National Risk \nIndex Rating") +
@@ -144,7 +153,7 @@ ggplot(full_popdata, aes(x = label, y = perc_pop,
     legend.key.height = unit(0.25, "cm"),
     legend.title = element_text(size = 9.5),
     legend.justification = "left",
-    legend.box.margin = margin(l = -25),
+    legend.box.margin = margin(l = -10),
     
     # axis edits ----
     axis.title.y = element_blank(),
